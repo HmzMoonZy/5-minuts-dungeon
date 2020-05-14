@@ -1,0 +1,66 @@
+[
+    {
+		"DungeonCard_Id": 1,
+		"DungeonCard_Name": "Polly",
+        "Slot_Red": 1,
+        "Slot_Blue": 1,
+        "Slot_Green": 0,
+        "Slot_Purple": 0
+    },
+    {
+		"DungeonCard_Id": 2,
+		"DungeonCard_Name": "Ghost",
+        "Slot_Red": 0,
+        "Slot_Blue": 0,
+        "Slot_Green": 0,
+        "Slot_Purple": 2
+    },
+    {
+		"DungeonCard_Id": 3,
+		"DungeonCard_Name": "Thief",
+        "Slot_Red": 2,
+        "Slot_Blue": 0,
+        "Slot_Green": 1,
+        "Slot_Purple": 0
+    },
+    {
+		"DungeonCard_Id": 4,
+		"DungeonCard_Name": "Motevillant",
+        "Slot_Red": 2,
+        "Slot_Blue": 0,
+        "Slot_Green": 0,
+        "Slot_Purple": 2
+    },
+    {
+		"DungeonCard_Id": 5,
+		"DungeonCard_Name": "Heretic",
+        "Slot_Red": 1,
+        "Slot_Blue": 1,
+        "Slot_Green": 1,
+        "Slot_Purple": 1
+    },
+    {
+		"DungeonCard_Id": 6,
+		"DungeonCard_Name": "Green Dargen",
+        "Slot_Red": 1,
+        "Slot_Blue": 1,
+        "Slot_Green": 4,
+        "Slot_Purple": 0
+    },
+    {
+		"DungeonCard_Id": 7,
+		"DungeonCard_Name": "Gargoyle",
+        "Slot_Red": 2,
+        "Slot_Blue": 2,
+        "Slot_Green": 1,
+        "Slot_Purple": 1
+    },
+    {
+		"DungeonCard_Id": 8,
+		"DungeonCard_Name": "Gargoyle warriors",
+        "Slot_Red": 2,
+        "Slot_Blue": 4,
+        "Slot_Green": 1,
+        "Slot_Purple": 1
+    }
+]

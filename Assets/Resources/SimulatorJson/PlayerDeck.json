@@ -1,0 +1,34 @@
+[
+    {
+		"Hero_ID": 1,
+		"Hero_Name": "Ranger",
+        "Red": 10,
+        "Blue": 5,
+        "Green": 20,
+        "Purple": 5
+    },
+    {
+		"Hero_ID": 2,
+		"Hero_Name": "Warrior",
+        "Red": 20,
+        "Blue": 10,
+        "Green": 5,
+        "Purple": 5
+    },
+    {
+		"Hero_ID": 3,
+		"Hero_Name": "Wizard",
+        "Red": 5,
+        "Blue": 5,
+        "Green": 10,
+        "Purple": 20
+    },
+    {
+		"Hero_ID": 4,
+		"Hero_Name": "Knight",
+        "Red": 10,
+        "Blue": 20,
+        "Green": 5,
+        "Purple": 5
+    }
+]
