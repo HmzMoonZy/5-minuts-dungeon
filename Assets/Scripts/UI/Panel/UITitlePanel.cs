@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class UITitlePanel : UIPanelBase
 {
+    //playerData
+    private TextMeshProUGUI nickName;
+    private TextMeshProUGUI coinNum;
+
     private Button findServ_Btn;
     private Button show_Btn;
 
+    PlayerDataProtocol pdp = null;
     #region UIPanelBase 生命周期
     public override void Init(params object[] args)
     {
@@ -16,6 +21,8 @@ public class UITitlePanel : UIPanelBase
 
         skinPath = "TitilePanel";
         layer = PanelLayer.Panel;
+
+        pdp = args[0] as PlayerDataProtocol;
     }
 
     public override void OnShowing()
@@ -24,10 +31,13 @@ public class UITitlePanel : UIPanelBase
 
         Transform skinTrans = skin.transform;
 
-        findServ_Btn = skinTrans.Find("FindServerBtn").GetComponent<Button>();
-        show_Btn= skinTrans.Find("ShowBtn").GetComponent<Button>();
-
         //Bind
+        findServ_Btn = skinTrans.Find("FindServerBtn").GetComponent<Button>();
+        show_Btn = skinTrans.Find("ShowBtn").GetComponent<Button>();
+        nickName = skinTrans.Find("PlayerInfo/nickname").GetComponent<TextMeshProUGUI>();
+        coinNum = skinTrans.Find("PlayerInfo/coin").GetComponent<TextMeshProUGUI>();
+
+        //AddListener
         findServ_Btn.onClick.AddListener(()=>
         {
             Debug.Log("Game Start!"); 
@@ -37,9 +47,15 @@ public class UITitlePanel : UIPanelBase
         {
             UIPanelMgr._Instance.OpenPanel<UITestPanel>("");
         });
-
     }
 
+    public override void OnShowed()
+    {
+        base.OnShowed();
+
+        nickName.text = pdp.nickName;
+        coinNum.text = "coin : " + pdp.coin;
+    }
 
     #endregion
 }

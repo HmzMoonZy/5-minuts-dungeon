@@ -46,6 +46,12 @@ public class UIPanelMgr : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 打开一个 UIPanelBase 面板
+    /// </summary>
+    /// <typeparam name="T">UIPanelBase</typeparam>
+    /// <param name="skinPath"></param>
+    /// <param name="args"></param>
     public void OpenPanel<T>(string skinPath, params object[] args) where T : UIPanelBase
     {
         string name = typeof(T).ToString();
@@ -94,9 +100,12 @@ public class UIPanelMgr : MonoBehaviour
 
     public void CloseAllPanel()
     {
-        foreach (string key in dict.Keys)
+        lock (dict)
         {
-
+            foreach (string key in dict.Keys)
+            {
+                ClosePanel(key);
+            }
         }
     }
 

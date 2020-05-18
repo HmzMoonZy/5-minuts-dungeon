@@ -69,24 +69,6 @@ public class UILauncherPanel : UIPanelBase
         ConnMgr.servConn.Send(ConnMgr.Login(ai), onLoginCallBack);
     }
 
-    private void requestDataCallBack(Message msg)
-    {
-        PlayerDataProtocol pdp = msg.Param as PlayerDataProtocol;
-
-        //第一次进入游戏, 创建人物
-        if (pdp == null)
-            UIPanelMgr._Instance.OpenPanel<UICreatePlayerPanel>("");
-
-        //进入游戏
-        else
-        {
-            UIPanelMgr._Instance.CloseAllPanel();
-            UIPanelMgr._Instance.OpenPanel<UITitlePanel>("", pdp);
-        }
-
-
-    }
-
     private void onLoginCallBack(Message msg)
     {
         int result = (int)msg.Param;
@@ -106,6 +88,24 @@ public class UILauncherPanel : UIPanelBase
         UIPanelMgr._Instance.ClosePanel("UILoadingPanel");
     }
 
+    private void requestDataCallBack(Message msg)
+    {
+        PlayerDataProtocol pdp = msg.Param as PlayerDataProtocol;
+
+        //第一次进入游戏, 创建人物
+        if (pdp == null)
+            UIPanelMgr._Instance.OpenPanel<UICreatePlayerPanel>("");
+
+        //进入游戏
+        else
+        {
+            //UIPanelMgr._Instance.CloseAllPanel();
+            //UIPanelMgr._Instance.ClosePanel(
+            UIPanelMgr._Instance.OpenPanel<UITitlePanel>("", pdp);
+        }
+    }
+
+    //TODO
     private void onNewsClick()
     { }
 }

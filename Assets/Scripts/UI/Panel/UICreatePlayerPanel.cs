@@ -29,41 +29,50 @@ public class UICreatePlayerPanel : UIPanelBase
 
         Transform skinTrans = skin.transform;
 
+        //Bind
         nickNameInput = skinTrans.Find("NickNameInput").GetComponent<TMP_InputField>();
         message = skinTrans.Find("Message").GetComponent<Text>();
         accept_Btn = skinTrans.Find("acceptBtn").GetComponent<Button>();
 
-        //Bind
+        //AddListener
         accept_Btn.onClick.AddListener(onAcceptClick);
 
     }
 
-    //TODO
     private void onAcceptClick()
     {
+        UIPanelMgr._Instance.OpenPanel<UILoadingPanel>("", "Try connect the game server");
+
         //前端检测
         if (nickNameInput.text == "")
         {
-            //TODO Show Tips
-            message.text = "昵称不能为空";
+            UIPanelMgr._Instance.OpenPanel<UIPromptTips>("", "inputlabel is temp!");
             return;
         }
 
         //连接检测
         if (ConnMgr.servConn.status != Connection.Status.Conneted)
         {
-            UIPanelMgr._Instance.OpenPanel<UILoadingPanel>("", "Try connect the game server");
-            ConnMgr.servConn.Connect(delegate { UIPanelMgr._Instance.ClosePanel("UILoadingPanle"); });
+            ConnMgr.servConn.Connect();
         }
 
-        //TODO 发送创建角色请求
-        UIPanelMgr._Instance.OpenPanel<UILoadingPanel>("", "Try connect the game server");
+        ConnMgr.servConn.Send(ConnMgr.CreateData(nickNameInput.text), onAcceptClickCallbabck);
+
     }
 
     private void onAcceptClickCallbabck(Message msg)
     {
-        int result = (int)msg.Param;
+        PlayerDataProtocol pdp = msg.Param as PlayerDataProtocol;
+        //int result = (int)msg.Param;
 
-        UIPanelMgr._Instance.ClosePanel("UILoadingPanle");
+        if (pdp != null)
+        {
+            //UIPanelMgr._Instance.CloseAllPanel();
+            UIPanelMgr._Instance.OpenPanel<UITitlePanel>("", pdp);
+        }
+        else
+            UIPanelMgr._Instance.OpenPanel<UIPromptTips>("", "Create player erro");
+
+        UIPanelMgr._Instance.ClosePanel("UILoadingPanel");
     }
 }

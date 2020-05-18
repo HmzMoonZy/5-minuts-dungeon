@@ -43,6 +43,7 @@ public class MsgDistribution
     public void DispatchEvent(Message msg)
     {
         string token = msg.Token;
+
         if (eventDict.ContainsKey(token))
         {
             eventDict[token](msg);
