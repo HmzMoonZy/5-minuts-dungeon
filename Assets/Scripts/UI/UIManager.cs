@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject window = Instantiate(LoadingWindow, FindObjectOfType<Canvas>().transform);
         window.gameObject.SetActive(true);
-        window.GetComponent<UILoadingCall>().Init(message, timeOut);
+        window.GetComponent<UILoadingPanel>().Init(message, timeOut);
         awakeList.Add(window);
     }
 

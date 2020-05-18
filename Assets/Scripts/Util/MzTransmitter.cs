@@ -34,9 +34,7 @@ public static class MzTransmitter
     #region Tcp拆装包
 
     /// <summary>
-    /// 解决tcp传输中的粘包拆包问题
-    /// 将数据长度(包头)与信息(包尾)转换为字节数组(Packet)
-    /// 最终传输的是这个 Packet , 包尾通常为序列化后的 MzMessage.
+    /// 在字节数组首部添加4字节数据,用于指示该字节数组长度
     /// </summary>
     public static byte[] ToPacket(byte[] data)
     {
@@ -99,6 +97,7 @@ public static class MzTransmitter
     public static byte[] UnPacket(byte[] packet, int bufferCount, out int msgLenth)
     {
         msgLenth = 0;
+
         if (packet.Length <= 0)
             return null;
 
