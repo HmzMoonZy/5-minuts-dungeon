@@ -38,7 +38,7 @@ public class UIRoomPanel : UIPanelBase
         //TODO AddListener
         ConnMgr.servConn.msgDist.AddListener(ConnMgr.GetRoomInfo().Token, getRoomInfoCallBack);
         ConnMgr.servConn.Send(ConnMgr.GetRoomInfo());
-        leaveBtn.onClick.AddListener(()=>
+        leaveBtn.onClick.AddListener(() =>
         {
             UIPanelMgr._Instance.OpenPanel<UILoadingPanel>("", "Try connect the game server");
             ConnMgr.servConn.Send(ConnMgr.GetLeaveRoom(), leaveRoomCallBack);
@@ -55,7 +55,15 @@ public class UIRoomPanel : UIPanelBase
 
     private void leaveRoomCallBack(Message msg)
     {
-        
+        UIPanelMgr._Instance.ClosePanel("UILoadingPanel");
+
+        int ret = (int)msg.Param;
+
+        if (ret == 1)
+        {
+            UIPanelMgr._Instance.OpenPanel<UIRoomListPanel>();
+            UIPanelMgr._Instance.ClosePanel("UIRoomPanel");
+        }
     }
 
     /// <summary>
@@ -66,7 +74,7 @@ public class UIRoomPanel : UIPanelBase
     {
         List<PlayerDataProtocol> roomInfo = new List<PlayerDataProtocol>();
         roomInfo = msg.Param as List<PlayerDataProtocol>;
-        
+
         if (roomInfo != null)
         {
             if (roomInfo.Count == 1)
@@ -82,6 +90,6 @@ public class UIRoomPanel : UIPanelBase
                 Debug.Log(roomInfo[1].nickName);
             }
         }
-        
+
     }
 }
